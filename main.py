@@ -50,7 +50,7 @@ def creation_sujets(liste):
         reponses = ""
         while len(sujet)<nb_qst:
             choix_question = random.randint(0,len(liste)-1)
-            if liste[choix_question] in sujet:
+            if liste[choix_question] not in sujet:
                 sujet.append(liste[choix_question])
                 reponses += str(liste[choix_question].juste)
         sujets.append(sujet)
