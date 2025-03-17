@@ -1,4 +1,5 @@
 import os
+import random
 from docx import Document
 
 class Genquestionqcm:
@@ -36,16 +37,35 @@ def qcmdocx(liste):
         qcm.add_paragraph(x.reponses[1])
         qcm.add_paragraph(x.reponses[2])
         qcm.add_paragraph(x.reponses[3])
-        qcm.add_paragraph(x.juste)
         qcm.add_paragraph()
     qcm.save('quiz_questions.docx')
 
+def creation_sujets(liste):
+    nb_suj = int(input("combien de sujets "))
+    nb_qst = int(input("combien de questions (multiples de 5) "))
+    sujets = []
+    reponses_sujets = []
+    for i in range (0,nb_suj):
+        sujet = []
+        reponses = ""
+        while len(sujet)<nb_qst:
+            choix_question = random.randint(0,len(liste)-1)
+            if liste[choix_question] in sujet:
+                sujet.append(liste[choix_question])
+                reponses += str(liste[choix_question].juste)
+        sujets.append(sujet)
+        reponses_sujets.append(reponses)
+    return (sujets, reponses_sujets)
 
 
 
 
 #print(lectureFichier(r"C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\QCM_cinema.txt"))
 questions = lectureFichier(r"C:\Users\quentin\Documents\coursbsd2024\genQCM\QCM_culture_generale.txt")
-for question in questions:
+#for question in questions:
+#    print(question)
+#qcmdocx(questions)
+(sujers,reprenses) = creation_sujets(questions)
+for question in sujers[0]:
     print(question)
-qcmdocx(questions)
+print(reprenses[0])
