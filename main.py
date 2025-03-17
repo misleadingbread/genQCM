@@ -69,3 +69,4 @@ questions = lectureFichier(r"C:\Users\quentin\Documents\coursbsd2024\genQCM\QCM_
 for question in sujers[0]:
     print(question)
 print(reprenses[0])
+a
