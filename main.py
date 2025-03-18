@@ -95,6 +95,11 @@ def qcmdocx(liste):
                     cellule.text = f'{j+10}'
     qcm.save(r'C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\quiz_questions.docx')
 
+def repdocx(reponses):
+    rep = Document()
+    rep.add_paragraph(reponses)
+    rep.save(r'C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\correction.docx')
+
 def creation_sujets(liste):
     nb_suj = int(input("combien de sujets "))
     nb_qst = int(input("combien de questions (multiples de 5) "))
@@ -125,3 +130,4 @@ for question in sujers[0]:
     print(question)
 print(reprenses[0])
 qcmdocx(sujers[0])
+repdocx(reprenses[0])
