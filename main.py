@@ -31,7 +31,7 @@ def lectureFichier(nomDeFichier):
                 index += 1
         return listeQuestions
 
-def qcmdocx(liste):
+def qcmdocx(liste, sujet_num):
     qcm = Document()
     nbquestion = len(liste)
     for x in liste:
@@ -89,12 +89,12 @@ def qcmdocx(liste):
                     cellule.text = f'{j+11}'
                 if i == 0 and j > 5:
                     cellule.text = f'{j+10}'
-    qcm.save(r'D:\COURS\genQCM\quiz_questions.docx')
+    qcm.save(r'C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\quiz_questions{sujet_num}.docx'.format(sujet_num=sujet_num))
 
-def repdocx(reponses):
+def repdocx(reponses, sujet_num):
     rep = Document()
     rep.add_paragraph(reponses)
-    rep.save(r'D:\COURS\genQCM\correction.docx')
+    rep.save(r'C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\correction{sujet_num}.docx'.format(sujet_num=sujet_num))
 
 def creation_sujets(liste, nb_suj, nb_qst):
     sujets = []
@@ -119,8 +119,9 @@ def on_submit():
             messagebox.showerror("Erreur", "Le nombre de questions doit être un multiple de 5")
             return
         sujets, reponses = creation_sujets(questions, nb_suj, nb_qst)
-        qcmdocx(sujets[0])
-        repdocx(reponses[0])
+        for i in range(nb_suj):
+            qcmdocx(sujets[i], i+1)
+            repdocx(reponses[i], i+1)
         messagebox.showinfo("Succès", "Les fichiers ont été générés avec succès!")
     except ValueError:
         messagebox.showerror("Erreur", "Veuillez entrer des nombres valides")
@@ -140,6 +141,6 @@ entry_questions.grid(row=1, column=1)
 tk.Button(root, text="Générer", command=on_submit).grid(row=2, column=0, columnspan=2)
 
 # Charger les questions
-questions = lectureFichier(r"D:\COURS\genQCM\QCM_culture_generale.txt")
+questions = lectureFichier(r"C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\QCM_cinema.txt")
 
 root.mainloop()
