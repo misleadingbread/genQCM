@@ -89,24 +89,31 @@ def qcmdocx(liste, sujet_num):
                     cellule.text = f'{j+11}'
                 if i == 0 and j > 5:
                     cellule.text = f'{j+10}'
-    qcm.save(r'C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\quiz_questions{sujet_num}.docx'.format(sujet_num=sujet_num))
+    #qcm.save(r'C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\quiz_questions{sujet_num}.docx'.format(sujet_num=sujet_num))
+    qcm.save(r'C:\Users\quentin\Documents\coursbsd2024\genQCM\quiz_questions{sujet_num}.docx'.format(sujet_num=sujet_num))
 
 def repdocx(reponses, sujet_num):
     rep = Document()
     rep.add_paragraph(reponses)
-    rep.save(r'C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\correction{sujet_num}.docx'.format(sujet_num=sujet_num))
+    #rep.save(r'C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\correction{sujet_num}.docx'.format(sujet_num=sujet_num))
+    rep.save(r'C:\Users\quentin\Documents\coursbsd2024\genQCM\correction{sujet_num}.docx'.format(sujet_num=sujet_num))
 
 def creation_sujets(liste, nb_suj, nb_qst):
     sujets = []
     reponses_sujets = []
     for i in range(0, nb_suj):
-        sujet = []
-        reponses = ""
-        while len(sujet) < nb_qst:
-            choix_question = random.randint(0, len(liste)-1)
-            if liste[choix_question] not in sujet:
-                sujet.append(liste[choix_question])
-                reponses += str(liste[choix_question].juste)
+    #    sujet = []
+    #    reponses = ""
+    #    while len(sujet) < nb_qst:
+    #        choix_question = random.sample(0, len(liste)-1)
+    #        if liste[choix_question] not in sujet:
+    #            sujet.append(liste[choix_question])
+    #            reponses += str(liste[choix_question].juste)
+    #    sujets.append(sujet)
+    #    reponses_sujets.append(reponses)
+    #return (sujets, reponses_sujets)
+        sujet = random.sample(liste, nb_qst)
+        reponses = "".join([q.juste for q in sujet])
         sujets.append(sujet)
         reponses_sujets.append(reponses)
     return (sujets, reponses_sujets)
@@ -141,6 +148,7 @@ entry_questions.grid(row=1, column=1)
 tk.Button(root, text="Générer", command=on_submit).grid(row=2, column=0, columnspan=2)
 
 # Charger les questions
-questions = lectureFichier(r"C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\QCM_cinema.txt")
+#questions = lectureFichier(r"C:\Users\natha\OneDrive\Bureau\Cours\Algo\genQCM\QCM_cinema.txt")
+questions = lectureFichier(r"C:\Users\quentin\Documents\coursbsd2024\genQCM\QCM_cinema.txt")
 
 root.mainloop()
